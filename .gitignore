@@ -1,0 +1,8 @@
+17/postgresql/*
+17/odoo-data/*
+18/postgresql/*
+18/odoo-data/*
+19/postgresql/*
+19/odoo-data/*
+
+*.pyc

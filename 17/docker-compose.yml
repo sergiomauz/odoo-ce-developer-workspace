@@ -1,0 +1,49 @@
+name: odoo_dev_17
+
+services:
+  dev_pg_odoo_17:
+    image: postgres:${PG_VERSION}
+    container_name: dev_pg_odoo_17
+    ports:
+      - "${PG_PORT}:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_USER=${PG_USER}
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    networks:
+      - development_network
+
+  dev_web_odoo_17:
+    container_name: dev_web_odoo_17
+    build:
+      context: .
+      dockerfile: dockerfile
+      args:
+        ODOO_VERSION: ${ODOO_VERSION}
+    depends_on:
+      - dev_pg_odoo_17
+    ports:
+      - "${ODOO_PORT}:8069"
+    environment:
+      - HOST=dev_pg_odoo_17
+      - USER=${PG_USER}
+      - PASSWORD=${PG_PASSWORD}
+    volumes:
+      - ./odoo-data:${ODOO_DATA_DIR}
+      - ./odoo-config:${ODOO_CONFIG_DIR}      
+      - ./odoo-extra-addons:${ODOO_ADDONS_DIR}
+    healthcheck:
+      test: ["CMD", "nc -z dev_pg_odoo_17 5432"]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 5      
+    networks:
+      - development_network
+
+networks:  
+  development_network:
+    name: development_network
+    driver: bridge    

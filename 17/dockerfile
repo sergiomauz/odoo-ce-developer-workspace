@@ -1,0 +1,14 @@
+ARG ODOO_VERSION
+
+FROM odoo:${ODOO_VERSION}
+
+USER root
+
+RUN apt-get update && \
+	apt-get install -y netcat \
+			wget
+
+COPY requirements.txt /requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
+
+CMD /usr/bin/python3 -m debugpy --listen 0.0.0.0:8070 /usr/bin/odoo -c /etc/odoo/odoo.conf

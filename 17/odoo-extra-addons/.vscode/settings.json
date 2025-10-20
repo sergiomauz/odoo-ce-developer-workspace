@@ -1,0 +1,6 @@
+{
+    "workbench.tree.indent": 20,
+    "workbench.list.smoothScrolling": false,    
+    "workbench.tree.renderIndentGuides": "always",
+    "python.languageServer": "None"
+}
