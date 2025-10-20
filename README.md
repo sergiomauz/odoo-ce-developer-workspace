@@ -1,6 +1,6 @@
 # Odoo CE Developer Workspace for Creation of Modules
 
->This project implements a workspace to develop modules for Odoo Community Edition in different versions.
+>This is an example how to start a project with Odoo Community Edition, making it easy to create new and customizable modules for different companies.
 
 ## How to Install
 
