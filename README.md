@@ -24,7 +24,7 @@
 - **docker-compose.yml**: Compose that creates all the basic infrastructure for Odoo.
 - **odoo.conf**: For the configuration of Odoo, starting with DB connection, data and addons.
 - **.env**: Environment variables for containers.
-- **requirements.txt**: All libraries that you can requires additionally for your modules.
+- **requirements.txt**: All libraries that you require additionally for your modules.
 
 ## Example of Modules Used
 
